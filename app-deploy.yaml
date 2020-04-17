@@ -1,0 +1,53 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    commit.image.appsody.dev/author: Gyanendra Priyadarshi (MFG) <GY334090@wipro.com>
+    commit.image.appsody.dev/committer: Gyanendra Priyadarshi (MFG) <GY334090@wipro.com>
+    commit.image.appsody.dev/contextDir: /quote-frontend
+    commit.image.appsody.dev/date: Fri Nov 15 12:44:26 2019 +0530
+    commit.image.appsody.dev/message: demo
+    image.opencontainers.org/created: "2020-04-17T06:13:40Z"
+    image.opencontainers.org/documentation: https://arijitm0800@dev.azure.com/arijitm0800/Modernizr/_git/Modernizr-ui
+    image.opencontainers.org/revision: f8742740c72e7e1bbee0bcb028569d4823e36f37-modified
+    image.opencontainers.org/source: https://arijitm0800@dev.azure.com/arijitm0800/Modernizr/_git/Modernizr-ui/tree/master
+    image.opencontainers.org/url: https://arijitm0800@dev.azure.com/arijitm0800/Modernizr/_git/Modernizr-ui
+    stack.appsody.dev/configured: docker.io/appsody/nodejs-express:0.2
+    stack.appsody.dev/created: 2019-11-22T09:54:22+0000
+    stack.appsody.dev/revision: 676a405baed71b4532532322cc245b49291de886
+    stack.appsody.dev/tag: appsody/nodejs-express:0.2.10
+  creationTimestamp: null
+  labels:
+    image.opencontainers.org/title: quote-frontend
+    stack.appsody.dev/version: 0.2.10
+  name: quote-frontend
+  namespace: insurance-quote
+spec:
+  applicationImage: dev.local/quote-frontend
+  createKnativeService: false
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /live
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  monitoring:
+    labels:
+      k8s-app: quote-frontend
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /ready
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 3000
+    type: NodePort
+  stack: nodejs-express
+  version: 1.0.0
