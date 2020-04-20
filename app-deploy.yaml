@@ -26,6 +26,9 @@ spec:
   applicationImage: dev.local/quote-frontend
   createKnativeService: false
   expose: true
+  env:
+    - name: BACKEND_URL
+      value: http://quote-back-insurance-quote.ocp-cluster-cp4app-ee19abb76dcfd06e52d294846296911e-0001.che01.containers.appdomain.cloud/quote
   livenessProbe:
     failureThreshold: 12
     httpGet:
